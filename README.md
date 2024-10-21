@@ -1,4 +1,4 @@
-# How to run this project using Docker-Compose for local evelopment
+# How to run this project using Docker-Compose for local development
 
 Follow these steps to run the provided `docker-compose.yml` on a machine that does not have Docker installed. If you have docker installed skip Step 1.
 
