@@ -1,0 +1,48 @@
+services:
+  aspnet-api:
+    image: aspnetcore-api:latest
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: aspnet-api
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ORACLE_DB_CONNECTION_STRING=User Id=admin;Password=StrongPWD1;Data Source=oracle-db:1521/FREEPDB1;
+    ports:
+      - "8080:8080"
+    depends_on:
+      - oracle-db
+    networks:
+      - app-network
+    volumes:
+      - ./api:/app
+      - /app/bin
+      - /app/obj
+
+  oracle-db:
+    image: gvenzl/oracle-xe:latest
+    container_name: oracle-db
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    environment:
+        ORACLE_PASSWORD: StrongPWD1
+        APP_USER: admin
+        APP_USER_PASSWORD: StrongPWD1
+    networks:
+      - app-network
+    healthcheck:
+        test: ["CMD", "healthcheck.sh"]
+        interval: 10s
+        timeout: 5s
+        retries: 10
+        start_period: 5s
+        start_interval: 5s
+
+volumes:
+  oracle-data:
+
+networks:
+  app-network:
+    driver: bridge
