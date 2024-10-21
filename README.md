@@ -34,3 +34,17 @@ docker-compose up --build
 Live server should be accessible at `http://localhost:8080`.
 
 Database should be accessible at `localhost:1521` with credentials `username: admin` and `password: StrongPWD1`.
+
+## 6. Add migrations and update database
+
+This project is using EF Core.
+
+Create migration:
+```bash
+docker exec -it "<container-name>" dotnet ef migrations add "<migration-name>" --project /app
+```
+
+Update the database:
+```bash
+docker exec -it "<container-name>" dotnet ef database update --project /app
+```
