@@ -23,7 +23,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () =>
     {
-        return "Hello World!";
+        return "Hello!";
     })
     .WithName("GetWeatherForecast")
     .WithOpenApi();
