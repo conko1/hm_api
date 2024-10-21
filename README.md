@@ -1,6 +1,6 @@
 # How to run this project using Docker-Compose for local development
 
-Follow these steps to run the provided `docker-compose.yml` on a machine that does not have Docker installed. If you have docker installed skip Step 1.
+Follow these steps to run the provided `docker-compose.yml`.
 
 ## 1. Install Docker Desktop
 
@@ -11,6 +11,7 @@ docker-compose --version
 ```
 
 ## 3. Prepare the Project Files
+Pull entire git repository into any local directory e.g. `/your-directory`.\
 Ensure that your project structure looks like this:
 ```bash
 /your-directory
@@ -29,3 +30,7 @@ docker-compose up --build
 ```
 
 ## 5. Access the Services
+
+Live server should be accessible at `http://localhost:8080`.
+
+Database should be accessible at `localhost:1521` with credentials `username: admin` and `password: StrongPWD1`.
